@@ -51,13 +51,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
-	<distributionManagement>
-		<repository>
-			<name>octea.maven-octea</name>
-			<id>octea.maven-octea</id>
-			<url>https://maven.cnb.cool/octea.maven/octea/-/packages/</url>
-		</repository>
-	</distributionManagement>
 
 </project>
