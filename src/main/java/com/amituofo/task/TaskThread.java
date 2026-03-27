@@ -292,10 +292,10 @@ public class TaskThread extends Thread {
 
 					taskRuntimeStatus.setExecResult(ExecResult.Interrupted);
 				} catch (Exception e) {
-					logger.error(LOG_HEAD2 + "Error when killing task!", e);
+					logger.error(LOG_HEAD2 + "Error when killing task.", e);
 					taskRuntimeStatus.setStatus(status, "Failed when trying to kill task thread " + taskInstance.getTaskId());
 				} finally {
-					logger.info(LOG_HEAD2 + "Task kill " + (killed ? "succeed!" : "failure!"));
+					logger.info(LOG_HEAD2 + "Task kill " + (killed ? "succeed." : "failure."));
 				}
 			} else {
 				// 任务执行结束
@@ -351,10 +351,10 @@ public class TaskThread extends Thread {
 					taskRuntimeStatus.setExecResult(ExecResult.Interrupted);
 				} catch (Exception e) {
 					// e.printStackTrace();
-					logger.error(LOG_HEAD2 + "Error when stopping task!", e);
+					logger.error(LOG_HEAD2 + "Error when stopping task.", e);
 					taskRuntimeStatus.setStatus(status, "Failed when trying to stop task thread " + taskInstance.getTaskId());
 				} finally {
-					logger.info(LOG_HEAD2 + "Task interrupt " + (stoped ? "succeed!" : "failure!"));
+					logger.info(LOG_HEAD2 + "Task interrupt " + (stoped ? "succeed." : "failure."));
 				}
 
 			} else {
@@ -381,12 +381,12 @@ public class TaskThread extends Thread {
 			logger.info(LOG_HEAD2 + "Creating instance of " + LOG_HEAD1);
 			Class<? extends TaskBase> taskclazz = taskDetail.getTaskClass();
 			if (taskclazz == null) {
-				logger.error(LOG_HEAD2 + "Task class name not found!! " + LOG_HEAD1);
+				logger.error(LOG_HEAD2 + "Task class name not found. " + LOG_HEAD1);
 			} else {
 				taskInstance = taskclazz.newInstance();
 
 				if (taskInstance == null) {
-					logger.error(LOG_HEAD2 + "Unable to create task instance [" + taskDetail.getTaskClass().getName() + "]! " + LOG_HEAD1);
+					logger.error(LOG_HEAD2 + "Unable to create task instance [" + taskDetail.getTaskClass().getName() + "]. " + LOG_HEAD1);
 				} else {
 					taskInstance.setTaskDetail(taskDetail);
 					taskInstance.setRuntimeStatus(taskRuntimeStatus);
@@ -431,12 +431,12 @@ public class TaskThread extends Thread {
 					logger.info(LOG_HEAD2 + "End running.");
 				} else {
 					// 初始化失败
-					logger.error(LOG_HEAD2 + "Prepare NG!");
+					logger.error(LOG_HEAD2 + "Prepare NG.");
 					result = ExecResult.InitFailure;
 				}
 			} else {
 				// 初始化失败
-				logger.error(LOG_HEAD2 + "Initialize NG!");
+				logger.error(LOG_HEAD2 + "Initialize NG.");
 				result = ExecResult.InitFailure;
 			}
 		} catch (Throwable e) {
@@ -492,7 +492,7 @@ public class TaskThread extends Thread {
 				}
 
 				stopListenerListeners = null;
-				logger.info(LOG_HEAD2 + "Task stopped!");
+				logger.info(LOG_HEAD2 + "Task stopped.");
 				taskInstance = null;
 			}
 //			taskDetail.getParameter().clear();

@@ -3,11 +3,11 @@ package com.amituofo.task;
 public interface TaskRuntimeProgressListener {
 	public final static TaskRuntimeProgressListener NOOP = new TaskRuntimeProgressListener() {
 		@Override
-		public void setMaxProgress(long progress) {
+		public void setMaxProgress(long max) {
 		}
 
 		@Override
-		public void updateProgress(long progress) {
+		public void updateProgress(long step) {
 		}
 
 		@Override
@@ -19,9 +19,9 @@ public interface TaskRuntimeProgressListener {
 		}
 	};
 
-	void setMaxProgress(long maxProgress);
+	void setMaxProgress(long max);
 
-	void updateProgress(long progress);
+	void updateProgress(long step);
 
 	void updateProgressTo100Percent();
 
