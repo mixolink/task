@@ -265,7 +265,7 @@ public class TaskThread extends Thread {
 			if (taskInstance != null) {
 				RunStatus status = taskRuntimeStatus.getStatus();
 
-				if (status == RunStatus.Interrupting || status == RunStatus.Stoping || status == RunStatus.Stoped) {
+				if (status == RunStatus.Interrupting || status == RunStatus.Stopping || status == RunStatus.Stoped) {
 					return true;
 				}
 
@@ -315,11 +315,11 @@ public class TaskThread extends Thread {
 				boolean needTryStop = false;
 				RunStatus status = taskRuntimeStatus.getStatus();
 
-				if (status == RunStatus.Interrupting || status == RunStatus.Stoping || status == RunStatus.Stoped) {
+				if (status == RunStatus.Interrupting || status == RunStatus.Stopping || status == RunStatus.Stoped) {
 					return;
 				}
 
-				logger.info(LOG_HEAD2 + "Stoping task thread... ");
+				logger.info(LOG_HEAD2 + "Stopping task thread... ");
 
 				if (status != RunStatus.Pending) {
 					needTryStop = true;
@@ -454,7 +454,7 @@ public class TaskThread extends Thread {
 				if (taskInstance != null && initialized) {
 					try {
 						if (taskRuntimeStatus.getStatus().isRunningStatus()) {
-							taskRuntimeStatus.setStatus(RunStatus.Stoping, taskInstance.getStatusDescription(RunStatus.Stoping));
+							taskRuntimeStatus.setStatus(RunStatus.Stopping, taskInstance.getStatusDescription(RunStatus.Stopping));
 						}
 
 						logger.info(LOG_HEAD2 + "Finising...");
