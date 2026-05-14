@@ -12,7 +12,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
 
 import com.amituofo.common.api.Callback;
 import com.amituofo.common.type.RunStatus;
@@ -191,14 +191,14 @@ public class TaskThreadManagementImpl implements TaskThreadManagement {
 	}
 
 	@Override
-	public void shutdown() {
+	public synchronized void shutdown() {
 		disableAutoClean();
 		interruptAll();
 		threadExecutor.shutdownNow();
 	}
 
 	@Override
-	public void disableAutoClean() {
+	public synchronized void disableAutoClean() {
 		if (cleanTimer != null) {
 			cleanTimer.cancel();
 			cleanTimer = null;
@@ -206,7 +206,7 @@ public class TaskThreadManagementImpl implements TaskThreadManagement {
 	}
 
 	@Override
-	public void enableAutoClean(int cyclePeriod, final int deadAfterTimeMillis) {
+	public synchronized void enableAutoClean(int cyclePeriod, final int deadAfterTimeMillis) {
 		if (cyclePeriod > 0) {
 			disableAutoClean();
 

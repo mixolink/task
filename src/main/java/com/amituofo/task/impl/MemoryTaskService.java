@@ -1,6 +1,6 @@
 package com.amituofo.task.impl;
 
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
 
 import com.amituofo.common.api.Callback;
 import com.amituofo.task.TaskManagement;

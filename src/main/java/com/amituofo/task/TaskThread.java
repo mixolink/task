@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.amituofo.common.type.RunStatus;
 import com.amituofo.task.impl.TaskRuntimeMessage;
@@ -14,7 +14,7 @@ import com.amituofo.task.impl.TaskRuntimeProgress;
 
 //public class TaskExecuter implements Runnable {
 public class TaskThread extends Thread {
-	protected Logger logger = LogManager.getLogger(Task.class);
+	protected Logger logger = LoggerFactory.getLogger(Task.class);
 
 	private final TaskDetail taskDetail;
 	private final TaskRuntimeStatus taskRuntimeStatus;
