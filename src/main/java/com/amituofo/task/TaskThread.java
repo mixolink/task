@@ -47,9 +47,15 @@ public class TaskThread extends Thread {
 		LOG_HEAD1 = "Task-Name:[" + taskDetail.getName() + "] Catalog:[" + taskDetail.getCatalog() + "] ID:[" + taskDetail.getId() + "] ";
 		LOG_HEAD2 = "Task-[" + taskDetail.getId() + "] ";
 
-		this.setProgressListener(null);
-		this.setRuntimeMessageListener(null);
-		this.setPerformanceListener(null);
+		if (progressListener == null) {
+			this.setProgressListener(null);
+		}
+		if (runtimeMessageListener == null) {
+			this.setRuntimeMessageListener(null);
+		}
+		if (performanceListener == null) {
+			this.setPerformanceListener(null);
+		}
 	}
 
 	public void setLogger(Logger logger) {
@@ -254,6 +260,7 @@ public class TaskThread extends Thread {
 				@Override
 				public void updateRemainSecond(int remainSecond) {
 					taskRuntimePerformance.updateRemainSecond(remainSecond);
+					performanceListener.updateRemainSecond(remainSecond);
 				}
 			};
 		}
