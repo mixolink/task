@@ -69,10 +69,16 @@ public class TaskThreadManagementImpl implements TaskThreadManagement {
 		threadExecutor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize, 999, TimeUnit.DAYS, threadQueue);
 	}
 
-	public void setTaskPoolSize(int poolSize) {
-		corePoolSize = maximumPoolSize = (poolSize <= 0 ? 1 : poolSize);
-		threadExecutor.setCorePoolSize(corePoolSize);
-		threadExecutor.setMaximumPoolSize(maximumPoolSize);
+	public synchronized void setTaskPoolSize(int poolSize) {
+		int newPoolSize = poolSize <= 0 ? 1 : poolSize;
+		if (newPoolSize > threadExecutor.getMaximumPoolSize()) {
+			threadExecutor.setMaximumPoolSize(newPoolSize);
+			threadExecutor.setCorePoolSize(newPoolSize);
+		} else {
+			threadExecutor.setCorePoolSize(newPoolSize);
+			threadExecutor.setMaximumPoolSize(newPoolSize);
+		}
+		corePoolSize = maximumPoolSize = newPoolSize;
 	}
 
 	@Override
